@@ -1,3 +1,5 @@
-{{#each}}   {{!--  #each speaker in controller ? --}}
-  {{link-to name 'speakers.show' this}}
+{{#each}}
+  {{~#link-to 'speakers.show' this}}
+    {{name}} ({{presentations.length}})
+  {{~/link-to}}
 {{/each}}
