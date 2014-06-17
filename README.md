@@ -14,3 +14,13 @@ http://reefpoints.dockyard.com/2014/05/09/building-an-ember-app-with-rails-part-
 
 Part 4:
 http://reefpoints.dockyard.com/2014/05/31/building-an-ember-app-with-rails-part-4.html
+
+Notes from personal 'bugs':
+  Error 1: 'Pretender' is not defined.
+  Solution: Remember to run bower install
+  
+  Error 2: 'ActionController::RoutingError (uninitialized constant Api)'
+  Solution: Forgot to create api directory for SpeakersController => should be app/api/speakers_controller.rb
+
+Questions:
+  Can 'import Ember from 'ember';' be confined to just app.js?
