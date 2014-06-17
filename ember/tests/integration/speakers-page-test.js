@@ -32,7 +32,13 @@ module('Integration - Speaker Page', {
           }
         });
 
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({speaker: speaker})];
+        var speakerPresentations = presentations.filter(function(presentation) {
+          if (presentation.speaker_id === speaker.id) {
+            return true;
+          }
+        });
+
+        return [200, {"Content-Type": "application/json"}, JSON.stringify({speaker: speaker, presentations: speakerPresentations})];
       });
     });
 
@@ -78,5 +84,12 @@ test('Should list all speakers and number of presentations', function() {
     equal(find('a:contains("Bugs Bunny (2)")').length, 1);
     equal(find('a:contains("Wile E. Coyote (1)")').length, 1);
     equal(find('a:contains("Yosemite Sam (3)")').length, 1);
+  });
+});
+
+test('Should list all presentations for a speaker', function() {
+  visit('/speakers/1').then(function() {
+    equal(find('li:contains("What\'s up with Docs?")').length, 1);
+    equal(find('li:contains("Of course, you know, this means war.")').length, 1);
   });
 });
